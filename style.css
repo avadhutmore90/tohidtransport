@@ -1,0 +1,73 @@
+body {
+    margin: 0;
+    font-family: Arial;
+}
+
+/* Header */
+header {
+    background: #1e3a8a;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+/* Navbar */
+nav {
+    background: #111;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 10px;
+    text-decoration: none;
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+    nav a {
+        display: block;
+        margin: 5px 0;
+    }
+}
+
+/* Hero animation */
+.hero {
+    height: 300px;
+    background: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70') center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 30px;
+    animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.section {
+    padding: 30px;
+    text-align: center;
+}
+
+input, textarea {
+    width: 80%;
+    padding: 10px;
+    margin: 10px;
+}
+
+/* WhatsApp Button */
+.whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25D366;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    text-decoration: none;
+}
