@@ -1,164 +1,155 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Booking</title>
+<title>Future Booking System</title>
 
 <style>
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: radial-gradient(circle at top, #0f2027, #000000);
+  color: #00f7ff;
 }
 
 /* Header */
 header {
   text-align: center;
   padding: 15px;
-  color: white;
-  background: linear-gradient(90deg, #ff6a00, #ee0979);
+  background: black;
+  border-bottom: 1px solid #00f7ff;
+  text-shadow: 0 0 10px #00f7ff;
 }
 
-/* Navbar */
-nav {
+/* Layout */
+.container {
   display: flex;
   justify-content: center;
-  background: #111;
-}
-
-nav a {
-  color: white;
-  padding: 12px 18px;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-nav a:hover {
-  background: #ff6a00;
-  transform: scale(1.1);
-}
-
-/* Section */
-.section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
+  gap: 20px;
+  padding: 20px;
+  flex-wrap: wrap;
 }
 
 /* Form */
 form {
   width: 320px;
-  padding: 25px;
-  border-radius: 15px;
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-  color: white;
-  text-align: center;
-  animation: fadeIn 1.5s ease;
+  padding: 20px;
+  background: rgba(0,0,0,0.7);
+  border: 1px solid #00f7ff;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,255,255,0.2);
 }
 
 /* Inputs */
 input, textarea {
   width: 100%;
-  margin: 10px 0;
+  margin: 8px 0;
   padding: 10px;
-  border: none;
-  border-bottom: 2px solid white;
-  background: transparent;
-  color: white;
+  background: black;
+  border: 1px solid #00f7ff;
+  color: #00f7ff;
+  border-radius: 6px;
   outline: none;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #66faff;
 }
 
 /* Button */
 button {
-  margin-top: 15px;
-  padding: 10px;
   width: 100%;
+  padding: 10px;
+  background: linear-gradient(90deg,#00f7ff,#00c3ff);
   border: none;
-  border-radius: 25px;
-  background: #ff6a00;
-  color: white;
+  border-radius: 20px;
   cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #ee0979;
-  transform: scale(1.05);
-}
-
-/* Message */
-#msg {
-  margin-top: 10px;
   font-weight: bold;
+}
+
+/* Map */
+.map {
+  width: 320px;
+  height: 350px;
+  border: 1px solid #00f7ff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Output */
+.info {
+  margin-top: 10px;
+  font-size: 14px;
   color: #00ffcc;
 }
-
-/* WhatsApp */
-.whatsapp {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #25D366;
-  color: white;
-  font-size: 22px;
-  padding: 12px;
-  border-radius: 50%;
-  text-decoration: none;
-  animation: bounce 2s infinite;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px);}
-  to { opacity: 1; transform: translateY(0);}
-}
-
-@keyframes bounce {
-  0%,100% { transform: translateY(0);}
-  50% { transform: translateY(-8px);}
-}
 </style>
-
-<script>
-function submitBooking(e) {
-  e.preventDefault();
-  document.getElementById("msg").innerHTML = "✅ Booking Successful!";
-  e.target.reset();
-}
-</script>
 
 </head>
 
 <body>
 
-<header><h1>🚚 Book Transport</h1></header>
+<header>
+<h1>🚚 FUTURE BOOKING SYSTEM</h1>
+</header>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="booking.html">Booking</a>
-<a href="tracking.html">Tracking</a>
-<a href="contact.html">Contact</a>
-</nav>
+<div class="container">
 
-<section class="section">
+<!-- FORM -->
+<form onsubmit="book(event)">
 
-<form onsubmit="submitBooking(event)">
-<input type="text" placeholder="Name" required>
-<input type="text" placeholder="Phone" required>
-<input type="text" placeholder="Pickup" required>
-<input type="text" placeholder="Drop" required>
-<textarea placeholder="Goods"></textarea>
+<input type="text" id="name" placeholder="Name" required>
+<input type="text" id="phone" placeholder="Phone" required>
 
-<button type="submit">🚀 Book Now</button>
+<input type="text" id="pickup" placeholder="Pickup Location" required>
+<input type="text" id="drop" placeholder="Drop Location" required>
 
-<p id="msg"></p>
+<textarea id="goods" placeholder="Goods Details"></textarea>
+
+<!-- PRICE -->
+<input type="number" id="distance" placeholder="Distance (KM)" oninput="calcPrice()" required>
+
+<p class="info">💰 Estimated Price: ₹<span id="price">0</span></p>
+
+<button type="submit">🚀 Confirm Booking</button>
+
+<p class="info" id="bookingId"></p>
+
 </form>
 
-</section>
+<!-- MAP -->
+<div class="map">
+<iframe
+width="100%"
+height="100%"
+frameborder="0"
+style="border:0"
+loading="lazy"
+allowfullscreen
+src="https://www.google.com/maps?q=Solapur&output=embed">
+</iframe>
+</div>
 
-<a class="whatsapp" href="https://wa.me/917972562319" target="_blank">💬</a>
+</div>
+
+<script>
+
+/* 💰 PRICE CALCULATOR */
+function calcPrice() {
+  let km = document.getElementById("distance").value;
+  let price = km * 12 + 50; // base + per km
+  document.getElementById("price").innerText = price || 0;
+}
+
+/* 📦 BOOKING SYSTEM */
+function book(e) {
+  e.preventDefault();
+
+  // Booking ID generator
+  let id = "FM" + Math.floor(Math.random() * 90000 + 10000);
+
+  document.getElementById("bookingId").innerHTML =
+    "📦 Booking ID: " + id + "<br>✅ Booking Confirmed!";
+}
+</script>
 
 </body>
 </html>
