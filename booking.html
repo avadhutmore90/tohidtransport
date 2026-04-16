@@ -2,13 +2,138 @@
 <html>
 <head>
 <title>Booking</title>
-<link rel="stylesheet" href="style.css">
-<script src="script.js"></script>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 15px;
+  color: white;
+  background: linear-gradient(90deg, #ff6a00, #ee0979);
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  justify-content: center;
+  background: #111;
+}
+
+nav a {
+  color: white;
+  padding: 12px 18px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  background: #ff6a00;
+  transform: scale(1.1);
+}
+
+/* Section */
+.section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+/* Form */
+form {
+  width: 320px;
+  padding: 25px;
+  border-radius: 15px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  color: white;
+  text-align: center;
+  animation: fadeIn 1.5s ease;
+}
+
+/* Inputs */
+input, textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid white;
+  background: transparent;
+  color: white;
+  outline: none;
+}
+
+/* Button */
+button {
+  margin-top: 15px;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 25px;
+  background: #ff6a00;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #ee0979;
+  transform: scale(1.05);
+}
+
+/* Message */
+#msg {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #00ffcc;
+}
+
+/* WhatsApp */
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  font-size: 22px;
+  padding: 12px;
+  border-radius: 50%;
+  text-decoration: none;
+  animation: bounce 2s infinite;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateY(0);}
+  50% { transform: translateY(-8px);}
+}
+</style>
+
+<script>
+function submitBooking(e) {
+  e.preventDefault();
+  document.getElementById("msg").innerHTML = "✅ Booking Successful!";
+  e.target.reset();
+}
+</script>
+
 </head>
 
 <body>
 
-<header><h1>Book Transport</h1></header>
+<header><h1>🚚 Book Transport</h1></header>
 
 <nav>
 <a href="index.html">Home</a>
@@ -18,16 +143,19 @@
 </nav>
 
 <section class="section">
+
 <form onsubmit="submitBooking(event)">
-<input type="text" placeholder="Name" required><br>
-<input type="text" placeholder="Phone" required><br>
-<input type="text" placeholder="Pickup" required><br>
-<input type="text" placeholder="Drop" required><br>
-<textarea placeholder="Goods"></textarea><br>
-<button type="submit">Book Now</button>
-</form>
+<input type="text" placeholder="Name" required>
+<input type="text" placeholder="Phone" required>
+<input type="text" placeholder="Pickup" required>
+<input type="text" placeholder="Drop" required>
+<textarea placeholder="Goods"></textarea>
+
+<button type="submit">🚀 Book Now</button>
 
 <p id="msg"></p>
+</form>
+
 </section>
 
 <a class="whatsapp" href="https://wa.me/917972562319" target="_blank">💬</a>
